@@ -9,7 +9,7 @@ import com.arturlogan.cadastropessoasspring.repositories.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +22,7 @@ public class PessoaService {
 
     public PessoaResponse salvar(PessoaRequest pessoaRequest){
         Pessoa pessoa = mapperPessoa.toModel(pessoaRequest);
-
+        pessoa.setDataCadastro(LocalDate.now());
         pessoaRepository.save(pessoa);
 
         return mapperPessoa.toResponse(pessoa);
